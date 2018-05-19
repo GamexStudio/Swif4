@@ -62,5 +62,19 @@ extension ViewController : UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let name = self.googleModel.results?[indexPath.row].name
+        if let nameVal = name {
+            UserDefaults.standard.set(nameVal, forKey: "Name")
+        }
+        let userData = UserDefaults.standard.value(forKey: "Name") as? String
+        if name != nil {
+            print("User defaults data \(userData!)")
+        }
+        
+    }
+    
 }
 
